@@ -5,6 +5,7 @@ import HTMLTestRunner
 import os
 import time
 
+# 定义输出的文件位置和名字
 report_path = os.path.dirname(os.path.abspath('.')) + '/test_report/'
 
 now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
