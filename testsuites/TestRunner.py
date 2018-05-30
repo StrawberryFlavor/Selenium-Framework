@@ -1,7 +1,7 @@
 #_*_ coding:utf-8 _*_
 
 import unittest
-import HTMLTestRunner
+from MyHTMLTestReportCN import HTMLTestRunner
 import os
 import time
 
@@ -17,6 +17,6 @@ fp = file(HtmlFile, "wb")
 
 if __name__=='__main__':
     suite = unittest.TestLoader().discover("testsuites")
-    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'测试报告', description=u'执行情况')
+    runner = HTMLTestRunner(stream=fp, title=u'测试报告', description=u'执行情况',tester=u'QA')
     runner.run(suite)
 
