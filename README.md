@@ -6,8 +6,8 @@
 
 - **[framwork](https://github.com/StrawberryFlavor/Selenium-Framework/tree/master/framework)**：框架底层封装层，可以根据自己的想法封装底层方法
   - *[logger.py](https://github.com/StrawberryFlavor/Selenium-Framework/blob/master/framework/logger.py)*：封装了日志输入，包括文件输出和控制台的输出
-  - *[base_page](https://github.com/StrawberryFlavor/Selenium-Framework/blob/master/framework/base_page.py)*:封装了selenium库中常用的方法，包括对象查找，截图输出，浏览器的前进后退，清除和输入
-  - *[browser_engine](https://github.com/StrawberryFlavor/Selenium-Framework/blob/master/framework/browser_engine.py)*:通过读取配置文件去选择浏览器和url，并返回浏览器对象实例
+  - *[base_page](https://github.com/StrawberryFlavor/Selenium-Framework/blob/master/framework/base_page.py)*：封装了selenium库中常用的方法，包括对象查找，截图输出，浏览器的前进后退，清除和输入
+  - *[browser_engine](https://github.com/StrawberryFlavor/Selenium-Framework/blob/master/framework/browser_engine.py)*：通过读取配置文件去选择浏览器和url，并返回浏览器对象实例
 
 
 - **[screenshots](https://github.com/StrawberryFlavor/Selenium-Framework/tree/master/screenshots)**：用于接收测试过程中错误截图文件
