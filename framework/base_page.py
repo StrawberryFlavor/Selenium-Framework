@@ -2,6 +2,8 @@
 import time
 import os.path
 from framework.logger import Logger
+from selenium.common.exceptions import NoSuchElementException
+
 
 # create a logger instance
 logger = Logger(logger="BasePage").getlog()
@@ -19,7 +21,6 @@ class BasePage(object):
 
     def quit_browser(self):
         self.driver.quit()
-
         # 浏览器前进操作
 
     def forward(self):
@@ -70,9 +71,13 @@ class BasePage(object):
         之前这里设计的太复杂，将其改为传入元组
         传入的时候定义好定位的方式和元素
         """
-
-        element = self.driver.find_element_by_class_name(*selector)
-        return element
+        try:
+            element = self.driver.find_element_by_class_name(*selector)
+            logger.info("The element looked up is %s "% (selector))
+            return element
+        except NoSuchElementException as e:
+            logger.error("NoSuchElementException: %s" % e)
+            self.get_windows_img()
 
         # element = ''
         # if '=>' not in selector:
