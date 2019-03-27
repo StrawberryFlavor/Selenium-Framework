@@ -1,6 +1,5 @@
 # coding=utf-8
 import time
-from selenium.common.exceptions import NoSuchElementException
 import os.path
 from framework.logger import Logger
 
@@ -66,53 +65,53 @@ class BasePage(object):
 
             # 定位元素方法
 
-    def find_element(self, selector):
+    def find_element(self, *selector):
         """
-         这个地方为什么是根据=>来切割字符串，请看页面里定位元素的方法
-         submit_btn = "id=>su"
-         login_lnk = "xpath => //*[@id='u1']/a[7]"  # 百度首页登录链接定位
-         如果采用等号，结果很多xpath表达式中包含一个=，这样会造成切割不准确，影响元素定位
-        :param selector:
-        :return: element
+        之前这里设计的太复杂，将其改为传入元组
+        传入的时候定义好定位的方式和元素
         """
-        element = ''
-        if '=>' not in selector:
-            return self.driver.find_element_by_id(selector)
-        selector_by = selector.split('=>')[0]
-        selector_value = selector.split('=>')[1]
 
-        if selector_by == "i" or selector_by == 'id':
-            try:
-                element = self.driver.find_element_by_id(selector_value)
-                logger.info("Had find the element \' %s \' successful "
-                            "by %s via value: %s " % (element.text, selector_by, selector_value))
-            except NoSuchElementException as e:
-                logger.error("NoSuchElementException: %s" % e)
-                self.get_windows_img()  # take screenshot
-        elif selector_by == "n" or selector_by == 'name':
-            element = self.driver.find_element_by_name(selector_value)
-        elif selector_by == "c" or selector_by == 'class_name':
-            element = self.driver.find_element_by_class_name(selector_value)
-        elif selector_by == "l" or selector_by == 'link_text':
-            element = self.driver.find_element_by_link_text(selector_value)
-        elif selector_by == "p" or selector_by == 'partial_link_text':
-            element = self.driver.find_element_by_partial_link_text(selector_value)
-        elif selector_by == "t" or selector_by == 'tag_name':
-            element = self.driver.find_element_by_tag_name(selector_value)
-        elif selector_by == "x" or selector_by == 'xpath':
-            try:
-                element = self.driver.find_element_by_xpath(selector_value)
-                logger.info("Had find the element \' %s \' successful "
-                            "by %s via value: %s " % (element.text, selector_by, selector_value))
-            except NoSuchElementException as e:
-                logger.error("NoSuchElementException: %s" % e)
-                self.get_windows_img()
-        elif selector_by == "s" or selector_by == 'selector_selector':
-            element = self.driver.find_element_by_css_selector(selector_value)
-        else:
-            raise NameError("Please enter a valid type of targeting elements.")
-
+        element = self.driver.find_element_by_class_name(*selector)
         return element
+
+        # element = ''
+        # if '=>' not in selector:
+        #     return self.driver.find_element_by_id(selector)
+        # selector_by = selector.split('=>')[0]
+        # selector_value = selector.split('=>')[1]
+        #
+        # if selector_by == "i" or selector_by == 'id':
+        #     try:
+        #         element = self.driver.find_element_by_id(selector_value)
+        #         logger.info("Had find the element \' %s \' successful "
+        #                     "by %s via value: %s " % (element.text, selector_by, selector_value))
+        #     except NoSuchElementException as e:
+        #         logger.error("NoSuchElementException: %s" % e)
+        #         self.get_windows_img()  # take screenshot
+        # elif selector_by == "n" or selector_by == 'name':
+        #     element = self.driver.find_element_by_name(selector_value)
+        # elif selector_by == "c" or selector_by == 'class_name':
+        #     element = self.driver.find_element_by_class_name(selector_value)
+        # elif selector_by == "l" or selector_by == 'link_text':
+        #     element = self.driver.find_element_by_link_text(selector_value)
+        # elif selector_by == "p" or selector_by == 'partial_link_text':
+        #     element = self.driver.find_element_by_partial_link_text(selector_value)
+        # elif selector_by == "t" or selector_by == 'tag_name':
+        #     element = self.driver.find_element_by_tag_name(selector_value)
+        # elif selector_by == "x" or selector_by == 'xpath':
+        #     try:
+        #         element = self.driver.find_element_by_xpath(selector_value)
+        #         logger.info("Had find the element \' %s \' successful "
+        #                     "by %s via value: %s " % (element.text, selector_by, selector_value))
+        #     except NoSuchElementException as e:
+        #         logger.error("NoSuchElementException: %s" % e)
+        #         self.get_windows_img()
+        # elif selector_by == "s" or selector_by == 'selector_selector':
+        #     element = self.driver.find_element_by_css_selector(selector_value)
+        # else:
+        #     raise NameError("Please enter a valid type of targeting elements.")
+        #
+        # return element
 
         # 输入
 
