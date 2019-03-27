@@ -72,7 +72,7 @@ class BasePage(object):
         传入的时候定义好定位的方式和元素
         """
         try:
-            element = self.driver.find_element_by_class_name(*selector)
+            element = self.driver.find_element(*selector)
             logger.info("The element looked up is %s "% (selector))
             return element
         except NoSuchElementException as e:
@@ -120,9 +120,9 @@ class BasePage(object):
 
         # 输入
 
-    def type(self, selector, text):
+    def type(self, *selector, text):
 
-        el = self.find_element(selector)
+        el = self.find_element(*selector)
         el.clear()
         try:
             el.send_keys(text)
@@ -133,9 +133,9 @@ class BasePage(object):
 
             # 清除文本框
 
-    def clear(self, selector):
+    def clear(self, *selector):
 
-        el = self.find_element(selector)
+        el = self.find_element(*selector)
         try:
             el.clear()
             logger.info("Clear text in input box before typing.")
@@ -145,9 +145,9 @@ class BasePage(object):
 
             # 点击元素
 
-    def click(self, selector):
+    def click(self, *selector):
 
-        el = self.find_element(selector)
+        el = self.find_element(*selector)
         try:
             el.click()
             logger.info("The element \' %s \' was clicked." % el.text)
