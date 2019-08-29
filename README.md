@@ -1,4 +1,4 @@
-# Selenium UI 自动化测试框架（基于python 2）
+# Selenium UI 自动化测试框架（基于 python 2）
 ## 框架目录构造： ##
 
 
