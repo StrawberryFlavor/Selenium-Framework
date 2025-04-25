@@ -1,3 +1,4 @@
+# 已被 Playwright-Framework 取代 ！！请移步 [Playwright-Framework](https://github.com/StrawberryFlavor/Playwright-Framework)
 # Selenium UI 自动化测试框架（基于 python 2）
 ## 框架目录构造： ##
 
